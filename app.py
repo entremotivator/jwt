@@ -1,38 +1,35 @@
-import streamlit as st
-import jwt
-import datetime
-
-st.set_page_config(page_title="JWT Token Creator", layout="centered")
-
-st.title("🔐 JWT Token Creator")
-
-# Secret key input
-secret = st.text_input("Secret Key", type="password")
-
-# Algorithm selection
-algorithm = st.selectbox("Algorithm", options=["HS256", "HS384", "HS512"])
-
-# Payload fields
-st.subheader("Payload")
-username = st.text_input("Username")
-email = st.text_input("Email")
-is_admin = st.checkbox("Is Admin")
-exp_minutes = st.number_input("Expiration (in minutes)", min_value=1, value=60)
-
-# Generate button
-if st.button("Generate JWT Token"):
-    if not secret:
-        st.error("Secret key is required.")
-    else:
-        try:
-            payload = {
-                "username": username,
-                "email": email,
-                "is_admin": is_admin,
-                "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=exp_minutes)
-            }
-            token = jwt.encode(payload, secret, algorithm=algorithm)
-            st.success("JWT Token Generated!")
-            st.code(token, language="bash")
-        except Exception as e:
-            st.error(f"Error generating token: {e}")
+  import streamlit as st                                                       
+   import jwt                                                                   
+                                                                                
+   # Define a payload with the provided orgId, iat, and exp                     
+   payload = {                                                                  
+       "orgId": "64cf641a-39f2-411f-9926-bf28e93d1fb3",                         
+       "iat": 1746074705,                                                       
+       "exp": 1746075305                                                        
+   }                                                                            
+                                                                                
+   # Set your secret key                                                        
+   secret = 'ad6c5243-9548-4231-9d04-b99c1628cc62'                              
+                                                                                
+   def generate_jwt(payload, secret):                                           
+       # Generate the token                                                     
+       token = jwt.encode(payload, secret, algorithm='HS256')                   
+       return token                                                             
+                                                                                
+   st.sidebar.header('Payload and Secret Key')                                  
+   st.sidebar.write('Payload:', payload)                                        
+   st.sidebar.write('Secret:', secret)                                          
+                                                                                
+   if st.button('Generate JWT'):                                                
+       token = generate_jwt(payload, secret)                                    
+       st.text('Generated JWT:')                                                
+       st.text(token)                                                           
+                                                                                
+                                                                                
+  You can create a file on your desktop named streamlit_app.py and paste this   
+  code into the file to run locally.                                            
+                                                                                
+  Afterward, to view this Streamlit app, navigate to where your                 
+  streamlit_app.py file is located in the terminal and use the command:         
+                                                                                
+                           
