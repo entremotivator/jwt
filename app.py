@@ -1,35 +1,36 @@
-import streamlit as st                                                       
-import jwt                                                                   
-                                                                                
-   # Define a payload with the provided orgId, iat, and exp                     
-   payload = {                                                                  
-       "orgId": "64cf641a-39f2-411f-9926-bf28e93d1fb3",                         
-       "iat": 1746074705,                                                       
-       "exp": 1746075305                                                        
-   }                                                                            
-                                                                                
-   # Set your secret key                                                        
-   secret = 'ad6c5243-9548-4231-9d04-b99c1628cc62'                              
-                                                                                
-   def generate_jwt(payload, secret):                                           
-       # Generate the token                                                     
-       token = jwt.encode(payload, secret, algorithm='HS256')                   
-       return token                                                             
-                                                                                
-   st.sidebar.header('Payload and Secret Key')                                  
-   st.sidebar.write('Payload:', payload)                                        
-   st.sidebar.write('Secret:', secret)                                          
-                                                                                
-   if st.button('Generate JWT'):                                                
-       token = generate_jwt(payload, secret)                                    
-       st.text('Generated JWT:')                                                
-       st.text(token)                                                           
-                                                                                
-                                                                                
-  You can create a file on your desktop named streamlit_app.py and paste this   
-  code into the file to run locally.                                            
-                                                                                
-  Afterward, to view this Streamlit app, navigate to where your                 
-  streamlit_app.py file is located in the terminal and use the command:         
-                                                                                
-                           
+import streamlit as st
+import jwt
+
+# Define a payload with the provided orgId, iat, and exp
+payload = {
+    "orgId": "64cf641a-39f2-411f-9926-bf28e93d1fb3",
+    "iat": 1746074705,
+    "exp": 1746075305
+}
+
+# Set your secret key
+secret = 'ad6c5243-9548-4231-9d04-b99c1628cc62'
+
+def generate_jwt(payload, secret):
+    # Generate the token
+    token = jwt.encode(payload, secret, algorithm='HS256')
+    return token
+
+# Streamlit UI
+st.sidebar.header('Payload and Secret Key')
+st.sidebar.write('Payload:', payload)
+st.sidebar.write('Secret:', secret)
+
+if st.button('Generate JWT'):
+    token = generate_jwt(payload, secret)
+    st.text('Generated JWT:')
+    st.text(token)
+
+# Instructions for running the app
+st.markdown("""
+---  
+**To run this Streamlit app locally:**  
+1. Save the code in a file named `streamlit_app.py` on your desktop.  
+2. Open a terminal, navigate to the file’s location, and run the following command:  
+```bash
+streamlit run streamlit_app.py
