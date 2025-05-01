@@ -74,4 +74,3 @@ st.sidebar.warning(
     "This version uses HS256 based on the provided secret key. If Vapi requires RS256, a proper PEM private key will be needed. "
     "Keep your Secret Key confidential."
 )
-
