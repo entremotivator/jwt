@@ -33,11 +33,11 @@ def generate_jwt_hs256(org_id, secret, expiry_minutes, scope):
         }
 
         # Generate token using HS256
-        token = jwt.encode(payload, secret, algorithm=\'HS256\')
+        token = jwt.encode(payload, secret, algorithm='HS256')
 
         # PyJWT >= 2 returns str, older versions might return bytes
         if isinstance(token, bytes):
-            token = token.decode(\'utf-8\')
+            token = token.decode("utf-8")
         return token, payload # Return token and payload used
     except jwt.exceptions.InvalidKeyError:
          return "Error: Invalid Secret Key format for HS256. Ensure it\'s a valid string.", None
@@ -74,3 +74,5 @@ st.sidebar.warning(
     "This version uses HS256 based on the provided secret key. If Vapi requires RS256, a proper PEM private key will be needed. "
     "Keep your Secret Key confidential."
 )
+
+
