@@ -27,7 +27,7 @@ if st.button('Generate JWT'):
     st.text(token)
 
 # Instructions for running the app
-st.markdown("""
+st.markdown(""
 ---  
 **To run this Streamlit app locally:**  
 1. Save the code in a file named `streamlit_app.py` on your desktop.  
