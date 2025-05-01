@@ -3,9 +3,6 @@ import jwt
 import datetime
 import os
 
-# Ensure the app directory exists
-app_dir = "/home/ubuntu/vapi_jwt_app"
-os.makedirs(app_dir, exist_ok=True)
 
 # --- VAPI Configuration ---
 # Use Streamlit secrets or environment variables for sensitive data in a real app
