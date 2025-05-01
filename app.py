@@ -26,5 +26,4 @@ if st.button('Generate JWT'):
     st.text('Generated JWT:')
     st.text(token)
 
-# Instructions for running the app
-st.markdown(""
+
